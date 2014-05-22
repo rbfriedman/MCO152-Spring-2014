@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CheckerBoardTest {
-
-	@Test
+ 
+	@Test 
 	/**
 	 * Your code must pass this test. Do not edit this test.
 	 */
