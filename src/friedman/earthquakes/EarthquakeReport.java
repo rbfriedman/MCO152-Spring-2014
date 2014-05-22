@@ -5,6 +5,6 @@ public class EarthquakeReport {
 	private String location;
 	@Override
 	public String toString() {
-		return magnitude + ' '+ location ;
+		return magnitude + ' '+ location  ;
 	}
 }
