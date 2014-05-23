@@ -19,8 +19,8 @@ public class EarthquakeReportFrame extends JFrame {
 
 	public EarthquakeReportFrame() {
 		this.jlEarthquakes = new JList<String>();
-		MyListCellRenderer cellRenderer = new MyListCellRenderer();
-		this.jlEarthquakes.setCellRenderer(cellRenderer);
+		//MyListCellRenderer cellRenderer = new MyListCellRenderer();
+		this.jlEarthquakes.setCellRenderer(new MyListCellRenderer());
 		add(this.jlEarthquakes);
 		EarthquakeReportThread myThread = new EarthquakeReportThread(this);
 		myThread.start();
@@ -37,65 +37,10 @@ public class EarthquakeReportFrame extends JFrame {
 			jlistArr[i] = earthquakeReportList.get(i).toString();
 
 		}
-		MyListCellRenderer cellRenderer = new MyListCellRenderer();
-		this.jlEarthquakes.setCellRenderer(cellRenderer);
+		
 		this.jlEarthquakes.setListData(jlistArr);
-		this.jlEarthquakes.setBackground(Color.cyan);
 
 		this.setVisible(true);
 	}
 
-	class MyListCellRenderer extends JLabel implements ListCellRenderer {
-
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -5507811426864727444L;
-
-		@Override
-		public Component getListCellRendererComponent(JList jlist, Object value,
-				int index, boolean isSelected, boolean cellHasFocus) {
-			// TODO Auto-generated method stub
-			   setText(value.toString());
-			   
-				 switch(Integer.valueOf(((String)value).substring(0))) {
-				 case 1 :
-					 this.setBackground(new Color(25,25,112));
-					 break;
-				 case 2:
-					 this.setBackground(Color.BLUE);
-					 break;
-				 case 3:
-					 this.setBackground(new Color(65,164,35));
-					 break;
-				 case 4:
-					 this.setBackground(new Color(69,168,182));
-					 break;
-				 case 5:
-					 this.setBackground(new Color(85,242,106));
-					 break;
-				 case 6:
-					 this.setBackground(Color.YELLOW);
-					 break;
-				 case 7:
-					 this.setBackground(Color.ORANGE);
-					 break;
-				 case 8:
-					 this.setBackground(new Color(226,123,97));
-					 break;
-				 case 9:
-					 this.setBackground(Color.red);
-					 break;
-				 case 10:
-					 this.setBackground(new Color(183,24,12));
-					 break;
-					 
-				 }
-			   
-		        
-		      
-
-		        return this;
-		}
-	}
 }

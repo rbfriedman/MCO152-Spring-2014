@@ -21,35 +21,34 @@ public class EarthquakeReportThread extends Thread {
 	}
 
 	public void run() {
-
-		try {
-			
-
+		while (true) {
 			try {
-				URL url = new URL(FEED_URL);
-				URLConnection connection = url.openConnection();
-				InputStream in = connection.getInputStream();
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(in));
-				final JsonReader jsonReader = new JsonReader(reader);
 
-				Gson gson = new Gson();
-				earthquakeReportList = gson.fromJson(jsonReader,
-						EarthquakeReportList.class);
-				System.out.println("Earthquake Info has been read in\n"
-						+ earthquakeReportList.toString());
-				frame.loadEarthquakeInfo(earthquakeReportList);
-			} catch (MalformedURLException m) {
-				m.printStackTrace();
-			} catch (IOException e) {
+				try {
+					URL url = new URL(FEED_URL);
+					URLConnection connection = url.openConnection();
+					InputStream in = connection.getInputStream();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(in));
+					final JsonReader jsonReader = new JsonReader(reader);
+
+					Gson gson = new Gson();
+					earthquakeReportList = gson.fromJson(jsonReader,
+							EarthquakeReportList.class);
+					System.out.println("Earthquake Info has been read in\n"
+							+ earthquakeReportList.toString());
+					frame.loadEarthquakeInfo(earthquakeReportList);
+				} catch (MalformedURLException m) {
+					m.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.sleep(60 * 1000);
+			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
-			this.sleep(60 * 1000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
-
 	}
 }
